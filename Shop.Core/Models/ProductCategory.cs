@@ -7,16 +7,18 @@ using System.Threading.Tasks;
 
 namespace Shop.Core.Models
 {
-    public class ProductCategory
+    public class ProductCategory : BaseEntity
     {
-        public string Id { get; set; }
+        // We can delete the Id property because now the BaseEntity
+        // handles the Id. The constructor as well.
+        //public string Id { get; set; }
 
         [Required]
         public string Category { get; set; }
 
-        public ProductCategory()
-        {
-            this.Id = Guid.NewGuid().ToString();
-        }
+        //public ProductCategory()
+        //{
+        //    this.Id = Guid.NewGuid().ToString();
+        //}
     }
 }

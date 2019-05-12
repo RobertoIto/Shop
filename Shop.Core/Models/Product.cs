@@ -8,9 +8,11 @@ using System.Threading.Tasks;
 
 namespace Shop.Core.Models
 {
-    public class Product
+    public class Product : BaseEntity
     {
-        public string Id { get; set; }
+        // We can delete the Id property because now the BaseEntity
+        // handles the Id. The constructor as well.
+        //public string Id { get; set; }
 
         [Required]
         [StringLength(20)]
@@ -28,9 +30,9 @@ namespace Shop.Core.Models
 
         public string Image { get; set; }
 
-        public Product()
-        {
-            this.Id = Guid.NewGuid().ToString();
-        }
+        //public Product()
+        //{
+        //    this.Id = Guid.NewGuid().ToString();
+        //}
     }
 }

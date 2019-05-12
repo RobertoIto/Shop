@@ -288,7 +288,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ProductCategory\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
