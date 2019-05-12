@@ -19,13 +19,12 @@ namespace Shop.DataAccess.InMemory
             {
                 products = new List<Product>();
             }
-
         }
 
         // Save the list into the cache
         public void Commit()
         {
-            cache["product"] = products;
+            cache["products"] = products;
         }
 
         // Return one product in the list
