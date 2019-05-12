@@ -1,4 +1,5 @@
-﻿using Shop.Core.Models;
+﻿using Shop.Core.Contracts;
+using Shop.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Shop.DataAccess.InMemory
     // update, delete and get into our controllers.
     // The T inherited the Id from the BaseEntity. Now our generic
     // class knows that it will always receive an Id.
-    public class InMemoryRepository<T> where T : BaseEntity
+    public class InMemoryRepository<T> : IRepository<T> where T : BaseEntity
     {
         ObjectCache cache = MemoryCache.Default;
         List<T> items;
