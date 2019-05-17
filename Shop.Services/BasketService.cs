@@ -1,5 +1,6 @@
 ﻿using Shop.Core.Contracts;
 using Shop.Core.Models;
+using Shop.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Web;
 
 namespace Shop.Services
 {
-    public class BasketService
+    public class BasketService : IBasketService
     {
         IRepository<Product> productContext;
         IRepository<Basket> basketContext;
@@ -112,6 +113,56 @@ namespace Shop.Services
                 basketContext.Commit();
             }
         }
-    }
+
+        public List<BasketItemViewModel> GetBasketItems(HttpContextBase httpContext)
+        {
+            Basket basket = GetBasket(httpContext, true);
+
+            if (basket != null)
+            {
+                var results = (from b in basket.BasketItems
+                              join p in productContext.Collection() on b.ProductId equals p.Id
+                              select new BasketItemViewModel()
+                              {
+                                  Id = basket.Id,
+                                  Quantity = b.Quantity,
+                                  Image = p.Image,
+                                  Price = p.Price
+                              }).ToList();
+                return results;
+            }
+            else
+            {
+                return new List<BasketItemViewModel>();
+            }
+        }
+
+        public BasketSummaryViewModel GetBasketSummary(HttpContextBase httpContext)
+        {
+            Basket basket = GetBasket(httpContext, true);
+            BasketSummaryViewModel model = new BasketSummaryViewModel(0, 0);
+
+            if (basket != null)
+            {
+                // The ? means that the variable can receive null.
+                int? basketCount = (from item in basket.BasketItems
+                                    select item.Quantity).Sum();
+
+                decimal? basketTotal = (from item in basket.BasketItems
+                                        join p in productContext.Collection() on item.ProductId equals p.Id
+                                        select item.Quantity * p.Price).Sum();
+
+
+                // The ?? means that if basketCount has a value returns basketCount else 0.
+                model.BasketCount = basketCount ?? 0;
+                model.BasketTotal = basketTotal ?? 0;
+
+                return model;
+            }
+            else
+            {
+                return model;
+            }
+        }
     
 }
