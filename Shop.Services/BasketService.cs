@@ -19,7 +19,7 @@ namespace Shop.Services
         public const string BasketSessionName = "eCommerceBasket";
 
         // Use the IRepository interface to work with the basket and basketitem.
-        public BasketService( IRepository<Product> ProductContext,
+        public BasketService(IRepository<Product> ProductContext,
                               IRepository<Basket> BasketContext)
         {
             this.basketContext = BasketContext;
@@ -82,7 +82,7 @@ namespace Shop.Services
             Basket basket = GetBasket(httpContext, true);
             BasketItem item = basket.BasketItems.FirstOrDefault(i => i.ProductId == productId);
 
-            if (item== null)
+            if (item == null)
             {
                 item = new BasketItem()
                 {
@@ -107,7 +107,7 @@ namespace Shop.Services
             Basket basket = GetBasket(httpContext, true);
             BasketItem item = basket.BasketItems.FirstOrDefault(i => i.Id == itemId);
 
-            if (itemId != null)
+            if (item != null)
             {
                 basket.BasketItems.Remove(item);
                 basketContext.Commit();
@@ -116,19 +116,19 @@ namespace Shop.Services
 
         public List<BasketItemViewModel> GetBasketItems(HttpContextBase httpContext)
         {
-            Basket basket = GetBasket(httpContext, true);
+            Basket basket = GetBasket(httpContext, false);
 
             if (basket != null)
             {
                 var results = (from b in basket.BasketItems
-                              join p in productContext.Collection() on b.ProductId equals p.Id
-                              select new BasketItemViewModel()
-                              {
-                                  Id = basket.Id,
-                                  Quantity = b.Quantity,
-                                  Image = p.Image,
-                                  Price = p.Price
-                              }).ToList();
+                               join p in productContext.Collection() on b.ProductId equals p.Id
+                               select new BasketItemViewModel()
+                               {
+                                   Id = b.Id,
+                                   Quantity = b.Quantity,
+                                   Image = p.Image,
+                                   Price = p.Price
+                               }).ToList();
                 return results;
             }
             else
@@ -139,7 +139,7 @@ namespace Shop.Services
 
         public BasketSummaryViewModel GetBasketSummary(HttpContextBase httpContext)
         {
-            Basket basket = GetBasket(httpContext, true);
+            Basket basket = GetBasket(httpContext, false);
             BasketSummaryViewModel model = new BasketSummaryViewModel(0, 0);
 
             if (basket != null)
@@ -164,5 +164,5 @@ namespace Shop.Services
                 return model;
             }
         }
-    
+    }
 }
