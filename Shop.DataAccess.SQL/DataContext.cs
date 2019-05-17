@@ -15,7 +15,11 @@ namespace Shop.DataAccess.SQL
             
         }
 
+        // This tells the data context to work with these models into the database.
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<Basket> Baskets { set; get; }
+        public DbSet<BasketItem> BasketItems { set; get; }
+
     }
 }
