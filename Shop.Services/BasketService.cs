@@ -95,7 +95,7 @@ namespace Shop.Services
             }
             else
             {
-                item.Quantity = item.Quantity + 1;
+                item.Quantity += 1;
             }
 
             // Commit the changes into the database and close the connection.
@@ -155,7 +155,7 @@ namespace Shop.Services
 
                 // The ?? means that if basketCount has a value returns basketCount else 0.
                 model.BasketCount = basketCount ?? 0;
-                model.BasketTotal = basketTotal ?? 0;
+                model.BasketTotal = basketTotal ?? decimal.Zero;
 
                 return model;
             }
@@ -163,6 +163,13 @@ namespace Shop.Services
             {
                 return model;
             }
+        }
+
+        public void ClearBasket(HttpContextBase httpContext)
+        {
+            Basket basket = GetBasket(httpContext, false);
+            basket.BasketItems.Clear();
+            basketContext.Commit();
         }
     }
 }
