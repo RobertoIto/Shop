@@ -11,6 +11,7 @@ namespace Shop.WebUI.Controllers
 {
     public class BasketController : Controller
     {
+        IRepository<Customer> customers;
         IBasketService basketService;
         IOrderService orderService;
 
@@ -18,10 +19,13 @@ namespace Shop.WebUI.Controllers
         //{
         //}
 
-        public BasketController(IBasketService BasketService, IOrderService OrderService)
+        public BasketController(IBasketService BasketService, 
+                                IOrderService OrderService,
+                                IRepository<Customer> Customers)
         {
             this.basketService = BasketService;
             this.orderService = OrderService;
+            this.customers = Customers;
         }
 
         // GET: Basket
@@ -53,16 +57,45 @@ namespace Shop.WebUI.Controllers
             return PartialView(basketSummary);
         }
 
+        // The Authorize will verify if the user is logged in, if it is not then
+        // redirect to the login page.
+        [Authorize]
         public ActionResult Checkout()
         {
-            return View();
+            // Get the customer from the database.
+            Customer customer = 
+                customers.Collection().FirstOrDefault(c => c.Email == User.Identity.Name);
+
+            if (customer != null)
+            {
+                Order order = new Order()
+                {
+                    FirstName = customer.FirstName,
+                    LastName = customer.LastName,
+                    Email = customer.Email,
+                    Street = customer.Street,
+                    City = customer.City,
+                    State = customer.State,
+                    ZipCode = customer.ZipCode
+                };
+
+                return View(order);
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Checkout(Order order)
         {
             var basketItems = basketService.GetBasketItems(this.HttpContext);
             order.OrderStatus = "Order Created.";
+
+            // Get the email from the user login
+            order.Email = User.Identity.Name;
 
             // process payment
             order.OrderStatus = "Payment in Progress.";
