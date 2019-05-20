@@ -8,6 +8,8 @@ using System.Web.Mvc;
 
 namespace Shop.WebUI.Controllers
 {
+    // This authorizes any administrator.
+    [Authorize(Roles = "Admin")]
     public class ProductCategoryManagerController : Controller
     {
         // Create a repository

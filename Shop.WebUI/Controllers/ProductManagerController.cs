@@ -10,6 +10,8 @@ using Shop.Core.ViewModels;
 
 namespace Shop.WebUI.Controllers
 {
+    // This authorizes any administrator.
+    [Authorize(Roles = "Admin")]
     public class ProductManagerController : Controller
     {
         // Create a repository

@@ -6,6 +6,11 @@ using System.Web.Mvc;
 
 namespace Shop.WebUI.Controllers
 {
+    // Only the user test@test.com have access to the admin pages.
+    //[Authorize(Users ="test@test.com")]
+
+    // This authorizes any administrator.
+    [Authorize(Roles ="Admin")]
     public class AdminController : Controller
     {
         // GET: Admin
