@@ -92,15 +92,15 @@ namespace Shop.WebUI.Controllers
         public ActionResult Checkout(Order order)
         {
             var basketItems = basketService.GetBasketItems(this.HttpContext);
-            order.OrderStatus = "Order Created.";
+            order.OrderStatus = "Order Created";
 
             // Get the email from the user login
             order.Email = User.Identity.Name;
 
             // process payment
-            order.OrderStatus = "Payment in Progress.";
+            order.OrderStatus = "Payment in Progress";
 
-            order.OrderStatus = "Payment Processed.";
+            order.OrderStatus = "Payment Processed";
             orderService.CreateOrder(order, basketItems);
             basketService.ClearBasket(this.HttpContext);
 
