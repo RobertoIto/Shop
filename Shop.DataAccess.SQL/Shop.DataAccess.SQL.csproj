@@ -69,6 +69,14 @@
     <Compile Include="Migrations\201905191926080_AddOrders1.Designer.cs">
       <DependentUpon>201905191926080_AddOrders1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905211220583_UpdateDescLength.cs" />
+    <Compile Include="Migrations\201905211220583_UpdateDescLength.Designer.cs">
+      <DependentUpon>201905211220583_UpdateDescLength.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905211228310_UpdateDescLength2.cs" />
+    <Compile Include="Migrations\201905211228310_UpdateDescLength2.Designer.cs">
+      <DependentUpon>201905211228310_UpdateDescLength2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLRepository.cs" />
@@ -98,6 +106,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905191926080_AddOrders1.resx">
       <DependentUpon>201905191926080_AddOrders1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905211220583_UpdateDescLength.resx">
+      <DependentUpon>201905211220583_UpdateDescLength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905211228310_UpdateDescLength2.resx">
+      <DependentUpon>201905211228310_UpdateDescLength2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

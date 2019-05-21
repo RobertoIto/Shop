@@ -25,8 +25,12 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Product.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Product.Description, new { htmlAttributes = new { @class = "form-control" } })
+            @*<div class="col-md-10">
+            @Html.EditorFor(model => model.Product.Description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Product.Description, "", new { @class = "text-danger" })
+            </div>*@
+            <div class="col-md-10" style="height:100px;">
+                @Html.TextAreaFor(model => model.Product.Description, new { htmlAttributes = new { @class = "form-control" }, cols = "500", rows = "5" })
                 @Html.ValidationMessageFor(model => model.Product.Description, "", new { @class = "text-danger" })
             </div>
         </div>

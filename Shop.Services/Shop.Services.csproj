@@ -51,6 +51,10 @@
       <Project>{20774ad1-f039-4c48-82a9-d95ac27835de}</Project>
       <Name>Shop.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Shop.DataAccess.SQL\Shop.DataAccess.SQL.csproj">
+      <Project>{699CDDF7-D3F1-4FD2-A555-356AD8ECABD8}</Project>
+      <Name>Shop.DataAccess.SQL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
