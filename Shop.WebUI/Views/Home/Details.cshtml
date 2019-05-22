@@ -8,7 +8,7 @@
 
 <div>
     <div class="col-md-2">
-        <img class="img-responsive" src="~/Content/ProductImages/@Model.Image"/>
+        <img class="img-responsive" src="~/ProductImages/@Model.Image"/>
     </div>
     
     <div class="col-md-10">
@@ -45,7 +45,11 @@
 
         </dl>
     </div>
-    @Html.ActionLink("Back to List", "Index")
+
+    <div class="col-md-12">
+        <br />
+        @Html.ActionLink("Back to List", "Index")
+    </div>
 </div>
 
 <div class="col-md-12 clearfix"></div>

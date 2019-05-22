@@ -57,7 +57,7 @@ namespace Shop.WebUI.Controllers
                 if (file != null)
                 {
                     product.Image = product.Id + Path.GetExtension(file.FileName);
-                    file.SaveAs(Server.MapPath("//Content//ProductImages//") + product.Image);
+                    file.SaveAs(Server.MapPath("//ProductImages//") + product.Image);
                 }
 
                 context.Insert(product);
@@ -105,7 +105,7 @@ namespace Shop.WebUI.Controllers
                     if (file != null)
                     {
                         productToEdit.Image = productToEdit.Id + Path.GetExtension(file.FileName);
-                        file.SaveAs(Server.MapPath("//Content//ProductImages//") + productToEdit.Image);
+                        file.SaveAs(Server.MapPath("//ProductImages//") + productToEdit.Image);
                     }
 
                     productToEdit.Name = product.Name;
