@@ -35,7 +35,12 @@
         {
             <div class="col-md-4" style="height:350px; padding:10px; margin:10px; border:solid 1px gray; border-radius: 5%;">
                 <div class="col-md-12" style="text-align:center; height:180px;">
-                    <img class="img" style="height:90%; width:initial" src="~/ProductImages/@item.Image" />
+                    @*<img class="img" style="height:90%; width:initial" src="~/ProductImages/@item.Image" />*@
+                    @{ 
+                        var base64 = Convert.ToBase64String(item.Img);
+                        var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
+                    }
+                    <img class="img" style="height:90%; width:initial" src="@imgSrc" />
                 </div>
 
                 <div class="col-md-12">
@@ -46,11 +51,11 @@
                     <h4>@item.Description</h4>
                 </div>*@
 
-                <div class="col-md-12">
-                    <h4>@item.Price</h4>
+                <div class="col-md-12" style="position:absolute; bottom:60px;">
+                    <h4>$ @item.Price</h4>
                 </div>
 
-                <div class="col-md-12">
+                <div class="col-md-12" style="position:absolute; bottom:20px;">
                     <a href="@Url.Action("AddToBasket", "Basket", new { Id=item.Id })" 
                        class="btn btn-default">Add to Basket</a>
                 </div>

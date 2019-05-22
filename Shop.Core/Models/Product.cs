@@ -30,6 +30,8 @@ namespace Shop.Core.Models
 
         public string Image { get; set; }
 
+        public byte[] Img { get; set; }
+
         //public Product()
         //{
         //    this.Id = Guid.NewGuid().ToString();

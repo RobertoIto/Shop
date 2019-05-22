@@ -18,7 +18,12 @@
         @Html.HiddenFor(model => model.Product.Id)
 
         <div class="col-md-2">
-            <img class="img-responsive" src="~/ProductImages/@Model.Product.Image" />
+            @*<img class="img-responsive" src="~/ProductImages/@Model.Product.Image" />*@
+            @{
+                var base64 = Convert.ToBase64String(Model.Product.Img);
+                var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
+            }
+            <img class="img-responsive" src="@imgSrc" />
         </div> 
         
         <div class="col-md-10">

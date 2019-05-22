@@ -77,6 +77,14 @@
     <Compile Include="Migrations\201905211228310_UpdateDescLength2.Designer.cs">
       <DependentUpon>201905211228310_UpdateDescLength2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905220049593_AddImg.cs" />
+    <Compile Include="Migrations\201905220049593_AddImg.Designer.cs">
+      <DependentUpon>201905220049593_AddImg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905220251053_AddImageOrderItem.cs" />
+    <Compile Include="Migrations\201905220251053_AddImageOrderItem.Designer.cs">
+      <DependentUpon>201905220251053_AddImageOrderItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLRepository.cs" />
@@ -112,6 +120,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905211228310_UpdateDescLength2.resx">
       <DependentUpon>201905211228310_UpdateDescLength2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905220049593_AddImg.resx">
+      <DependentUpon>201905220049593_AddImg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905220251053_AddImageOrderItem.resx">
+      <DependentUpon>201905220251053_AddImageOrderItem.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
